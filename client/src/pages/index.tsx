@@ -1,4 +1,5 @@
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router';
+
 import { Layout } from './layout';
 import { AuthPage } from './Auth';
 import { ListPage } from './List';
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
                 element: <FormPage />,
             },
             {
-                path: '/item',
+                path: '/item/:id',
                 element: <ItemPage />,
             },
             {

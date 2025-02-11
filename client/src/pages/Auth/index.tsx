@@ -1,3 +1,3 @@
 export const AuthPage = () => {
-    return <>list page</>;
+    return <>auth page</>;
 };

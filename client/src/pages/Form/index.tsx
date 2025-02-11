@@ -1,3 +1,6 @@
+import { useTitle } from '@/lib/hooks';
+
 export const FormPage = () => {
-    return <>list page</>;
+    useTitle('Размещение объявлений');
+    return <>form page</>;
 };
