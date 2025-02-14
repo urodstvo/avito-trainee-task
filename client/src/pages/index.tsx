@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router';
 
 import { Layout } from './layout';
-import { AuthPage } from './Auth';
+import { LoginPage, RegisterPage } from './Auth';
 import { ListPage } from './List';
 import { FormPage } from './Form';
 import { ItemPage } from './Item';
@@ -29,8 +29,12 @@ const router = createBrowserRouter([
                 element: <ItemPage />,
             },
             {
-                path: '/auth',
-                element: <AuthPage />,
+                path: '/login',
+                element: <LoginPage />,
+            },
+            {
+                path: '/register',
+                element: <RegisterPage />,
             },
         ],
     },

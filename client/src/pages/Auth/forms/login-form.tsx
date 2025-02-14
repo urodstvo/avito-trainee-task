@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router';
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -8,9 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useFormPersist } from '@/lib/hooks';
-import { useLoginMutation } from '@/api/queries/use-login-mutation';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import { useLoginMutation } from '@/api/queries';
 
 export const LoginForm = () => {
     const navigate = useNavigate();
@@ -72,6 +72,12 @@ export const LoginForm = () => {
                         </FormItem>
                     )}
                 />
+                <p className='leading-7 [&:not(:first-child)]:mt-6 justify-between flex'>
+                    Еще нет аккаунта?{' '}
+                    <Button asChild variant='link'>
+                        <Link to='/register'>Зарегистрироваться</Link>
+                    </Button>
+                </p>
                 <Button
                     type='submit'
                     className='w-full cursor-pointer mt-10'

@@ -25,7 +25,7 @@ export const Layout = () => {
                         </>
                     ) : (
                         <Button asChild>
-                            <NavLink to='/auth'>Войти</NavLink>
+                            <NavLink to='/login'>Войти</NavLink>
                         </Button>
                     )}
                 </nav>

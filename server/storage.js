@@ -39,10 +39,7 @@ export class InMemoryStorage {
   updateItem(item) {
     const index = this.items.findIndex((i) => i.id === item.id);
     if (index !== -1) {
-      this.items[index] = {
-        ...this.items[index],
-        ...item,
-      };
+      this.items[index] = item;
     } else {
       throw new Error("Item not found");
     }

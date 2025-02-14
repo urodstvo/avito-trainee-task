@@ -7,3 +7,5 @@ export const createRequestWithAuthHeader = (url_path: string, options: RequestIn
     };
     return () => fetch(`${API_URL}${url_path}`, options);
 };
+
+export * from './types';
