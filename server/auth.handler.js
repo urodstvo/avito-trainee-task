@@ -26,7 +26,7 @@ export const register = (req, res) => {
 
   const access_token = createAccessToken(user);
   tokenUserMap.set(access_token, user);
-  res.status(201).json({ access_token });
+  return res.status(201).json({ access_token });
 };
 
 export const login = (req, res) => {
@@ -37,9 +37,9 @@ export const login = (req, res) => {
   if (user) {
     const access_token = createAccessToken(user);
     tokenUserMap.set(access_token, user);
-    res.status(200).json({ access_token });
+    return res.status(200).json({ access_token });
   } else {
-    res.status(401).json({ error: "Invalid credentials" });
+    return res.status(401).json({ error: "Invalid credentials" });
   }
 };
 
@@ -48,16 +48,15 @@ export const logout = (req, res) => {
   if (authorization) {
     const token = authorization.split(" ")[1];
     tokenUserMap.delete(token);
-    res.status(204).send();
+    return res.status(200).send();
   } else {
-    res.status(401).json({ error: "Unauthorized" });
+    return res.status(401).json({ error: "Unauthorized" });
   }
 };
 
 export const getMe = (req, res) => {
   const user = req.user;
-  delete user.password;
-  res.status(200).json(user);
+  res.status(200).json({ user, password: undefined });
 };
 
 export const authMiddleware = (req, res, next) => {

@@ -1,11 +1,13 @@
 import express from "express";
 import bodyParser from "body-parser";
+import cors from "cors";
 
 import { createItem, getItem, updateItem, deleteItem, getItems } from "./items.handler.js";
 import { getMe, login, logout, register, authMiddleware } from "./auth.handler.js";
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 // Создание нового объявления
 app.post("/items", authMiddleware, createItem);
