@@ -11,7 +11,9 @@ import { useSetTypeContext } from '../context';
 import { UseFormReturn } from 'react-hook-form';
 import { z } from 'zod';
 import { schema } from '../schema';
-const types = ['Авто', 'Услуги', 'Недвижимость'] as const;
+import { CATEGORY_TYPES } from '@/constants';
+
+const types = CATEGORY_TYPES;
 
 export function PrimaryForm({
     control,

@@ -5,3 +5,4 @@ export * from './logout';
 export * from './create-item';
 export * from './get-item';
 export * from './update-item';
+export * from './get-items';

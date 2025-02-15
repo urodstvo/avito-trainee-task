@@ -9,19 +9,9 @@ import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover
 import { Command, CommandList, CommandGroup, CommandItem } from '@/components/ui/command';
 import { cn } from '@/lib/utils';
 import { ChevronsUpDown, Check } from 'lucide-react';
+import { PROPERTY_TYPES } from '@/constants';
 
-const propertyTypes = [
-    'Квартира',
-    'Дом',
-    'Коттедж',
-    'Таунхаус',
-    'Дача',
-    'Апартаменты',
-    'Комната',
-    'Пентхаус',
-    'Гараж',
-    'Земельный участок',
-] as const;
+const propertyTypes = PROPERTY_TYPES;
 
 export function EstateForm({
     control,

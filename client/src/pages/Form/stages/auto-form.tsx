@@ -10,29 +10,9 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 
 import { ChevronsUpDown, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { CAR_BRANDS } from '@/constants';
 
-const carBrands = [
-    'Toyota',
-    'BMW',
-    'Mercedes-Benz',
-    'Audi',
-    'Volkswagen',
-    'Ford',
-    'Chevrolet',
-    'Honda',
-    'Hyundai',
-    'Nissan',
-    'Lexus',
-    'Kia',
-    'Mazda',
-    'Porsche',
-    'Subaru',
-    'Volvo',
-    'Tesla',
-    'Land Rover',
-    'Jaguar',
-    'Mitsubishi',
-] as const;
+const carBrands = CAR_BRANDS;
 
 export function AutoForm({
     control,

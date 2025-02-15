@@ -9,19 +9,9 @@ import { Command, CommandGroup, CommandItem, CommandList } from '@/components/ui
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { ChevronsUpDown, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { SERVICE_TYPES } from '@/constants';
 
-export const serviceTypes = [
-    'Ремонт',
-    'Уборка',
-    'Доставка',
-    'Строительство',
-    'Репетиторство',
-    'Курьерские услуги',
-    'Автосервис',
-    'Косметология',
-    'Юридические услуги',
-    'Финансовые консультации',
-] as const;
+const serviceTypes = SERVICE_TYPES;
 
 export function ServiceForm({
     control,

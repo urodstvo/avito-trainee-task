@@ -2,7 +2,7 @@ import { useForm, UseFormReturn } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useEffect, useMemo } from 'react';
-import { useSearchParams } from 'react-router';
+import { useNavigate, useSearchParams } from 'react-router';
 
 import { TypeProvider, useSetTypeContext, useTypeContext } from './context';
 import { PrimaryForm } from './stages/primary-form';
@@ -17,6 +17,7 @@ import { PoorItem } from '@/api';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { cn } from '@/lib/utils';
+import { toast } from 'sonner';
 
 export const FormPage = () => {
     return (
@@ -41,7 +42,6 @@ const FormPageContent = () => {
     const { mutateAsync: updateItemAsync, isPending: isUpdatePending } = useUpdateItemMutation(
         Number(searchParams.get('editing'))
     );
-    const { data, isPending: isGetItemPending } = useGetItemQuery(Number(searchParams.get('editing')), !isEditing);
 
     const form = useForm<z.infer<typeof schema>>({
         resolver: zodResolver(schema),
@@ -53,9 +53,12 @@ const FormPageContent = () => {
         setValue: form.setValue,
     });
 
+    const { data, isPending: isGetItemPending } = useGetEditingItem(Number(searchParams.get('editing')), isEditing);
+
     useEffect(() => {
         if (data) {
             form.reset(data);
+            setType(data.type);
         }
     }, [data]);
 
@@ -126,4 +129,28 @@ const SecondaryForm = ({
     if (type === 'Услуги') return <ServiceForm control={control} setValue={setValue} />;
 
     return null;
+};
+
+const useGetEditingItem = (id: number, isEditing: boolean) => {
+    const navigate = useNavigate();
+
+    const { data, isPending, error } = useGetItemQuery(id, !isEditing);
+
+    useEffect(() => {
+        if (error) {
+            if (error.message === '404') {
+                navigate('/page-not-found');
+            }
+            if (error.message === '500') {
+                toast.error('На сервере произошла ошибка.', {
+                    description: 'Попробуйте позже',
+                });
+            }
+        }
+    }, [error]);
+
+    return {
+        data,
+        isPending,
+    };
 };
