@@ -4,7 +4,7 @@ const primarySchema = z.object({
     name: z.string({ required_error: 'Название обязательно' }).min(1, 'Название обязательно'),
     description: z.string({ required_error: 'Описание обязательно' }).min(1, 'Описание обязательно'),
     location: z.string({ required_error: 'Локация обязательна' }).min(1, 'Локация обязательна'),
-    image: z.string().url('Некорректная ссылка').optional(),
+    image: z.string().url('Некорректная ссылка').optional().nullable(),
 });
 
 // Схемы для разных типов объявлений

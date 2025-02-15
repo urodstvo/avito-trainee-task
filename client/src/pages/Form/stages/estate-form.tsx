@@ -65,7 +65,6 @@ export function EstateForm({
                                                     value={type}
                                                     key={type}
                                                     onSelect={() => {
-                                                        // @ts-expect-error related to the zod scheme
                                                         setValue('propertyType', type);
                                                     }}
                                                 >
@@ -120,7 +119,7 @@ export function EstateForm({
                 name='price'
                 render={({ field }) => (
                     <FormItem>
-                        <FormLabel>Цена, рубли</FormLabel>
+                        <FormLabel>Цена, рубли*</FormLabel>
                         <FormControl>
                             <Input placeholder='Цена в рублях' {...field} />
                         </FormControl>

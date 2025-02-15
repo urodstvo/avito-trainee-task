@@ -65,7 +65,6 @@ export function ServiceForm({
                                                     value={type}
                                                     key={type}
                                                     onSelect={() => {
-                                                        // @ts-expect-error related to the zod scheme
                                                         setValue('serviceType', type);
                                                     }}
                                                 >

@@ -123,7 +123,12 @@ export function PrimaryForm({
                     <FormItem>
                         <FormLabel>Ссылка на картинку/фото.</FormLabel>
                         <FormControl>
-                            <Input placeholder='Ссылка на картинку/фото.' {...field} />
+                            <Input
+                                placeholder='Ссылка на картинку/фото.'
+                                {...field}
+                                value={field.value ?? ''}
+                                onChange={(e) => field.onChange(e.target.value || null)}
+                            />
                         </FormControl>
                         <FormMessage />
                     </FormItem>

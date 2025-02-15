@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router';
 
-import { TypeProvider, useTypeContext } from './context';
+import { TypeProvider, useSetTypeContext, useTypeContext } from './context';
 import { PrimaryForm } from './stages/primary-form';
 import { AutoForm } from './stages/auto-form';
 import { EstateForm } from './stages/estate-form';
@@ -19,12 +19,23 @@ import { Form } from '@/components/ui/form';
 import { cn } from '@/lib/utils';
 
 export const FormPage = () => {
-    useTitle('Размещение объявлений');
+    return (
+        <TypeProvider>
+            <FormPageContent />
+        </TypeProvider>
+    );
+};
+
+const FormPageContent = () => {
     const [searchParams] = useSearchParams();
+    const setType = useSetTypeContext();
+
     const isEditing = useMemo(() => {
         const editingValue = searchParams.get('editing');
         return editingValue !== null && !Number.isNaN(Number(editingValue));
     }, [searchParams]);
+
+    useTitle(isEditing ? 'Редактирование объявления' : 'Размещение объявлений');
 
     const { mutateAsync: createItemAsync, isPending: isCreatePending } = useCreateItemMutation();
     const { mutateAsync: updateItemAsync, isPending: isUpdatePending } = useUpdateItemMutation(
@@ -34,7 +45,7 @@ export const FormPage = () => {
 
     const form = useForm<z.infer<typeof schema>>({
         resolver: zodResolver(schema),
-        mode: 'onBlur',
+        mode: 'all',
     });
 
     useFormPersist('item-form', {
@@ -51,7 +62,14 @@ export const FormPage = () => {
     const onSubmit = async (data: z.infer<typeof schema>) => {
         if (!isEditing) {
             await createItemAsync(data as PoorItem);
-            form.reset();
+            form.reset({
+                name: '',
+                description: '',
+                location: '',
+                image: null,
+            });
+            window.sessionStorage.removeItem('item-form');
+            setType(undefined);
         } else {
             await updateItemAsync(data as PoorItem);
         }
@@ -60,39 +78,37 @@ export const FormPage = () => {
     if (isEditing && isGetItemPending) return null;
 
     return (
-        <TypeProvider>
-            <div className='lg:px-[300px] w-full flex flex-col items-center'>
-                <h1 className='w-full scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl'>
-                    Размещение объявления
-                </h1>
-                <div className='flex flex-col lg:flex-row items-start gap-5 lg:gap-[300px] pt-10'>
-                    <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} className='w-full'>
-                            <div className='flex gap-20'>
-                                <PrimaryForm control={form.control} setValue={form.setValue} />
-                                <div className='flex flex-col justify-between'>
-                                    <SecondaryForm control={form.control} setValue={form.setValue} />
-                                    <Button
-                                        type='submit'
-                                        className={cn('mt-5', {
-                                            hidden: !form.getValues('type'),
-                                        })}
-                                        disabled={
-                                            form.formState.isSubmitting ||
-                                            !form.formState.isValid ||
-                                            isCreatePending ||
-                                            isUpdatePending
-                                        }
-                                    >
-                                        {isEditing ? 'Сохранить' : 'Создать объявление'}
-                                    </Button>
-                                </div>
+        <div className='lg:px-[300px] w-full flex flex-col items-center'>
+            <h1 className='w-full scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl'>
+                Размещение объявления
+            </h1>
+            <div className='flex flex-col lg:flex-row items-start gap-5 lg:gap-[300px] pt-10'>
+                <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className='w-full'>
+                        <div className='flex gap-20'>
+                            <PrimaryForm control={form.control} setValue={form.setValue} />
+                            <div className='flex flex-col justify-between'>
+                                <SecondaryForm control={form.control} setValue={form.setValue} />
+                                <Button
+                                    type='submit'
+                                    className={cn('mt-5', {
+                                        hidden: !form.getValues('type'),
+                                    })}
+                                    disabled={
+                                        form.formState.isSubmitting ||
+                                        !form.formState.isValid ||
+                                        isCreatePending ||
+                                        isUpdatePending
+                                    }
+                                >
+                                    {isEditing ? 'Сохранить' : 'Создать объявление'}
+                                </Button>
                             </div>
-                        </form>
-                    </Form>
-                </div>
+                        </div>
+                    </form>
+                </Form>
             </div>
-        </TypeProvider>
+        </div>
     );
 };
 
