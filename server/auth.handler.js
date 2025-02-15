@@ -56,7 +56,7 @@ export const logout = (req, res) => {
 
 export const getMe = (req, res) => {
   const user = req.user;
-  res.status(200).json({ user, password: undefined });
+  res.status(200).json({ ...user, password: undefined });
 };
 
 export const authMiddleware = (req, res, next) => {
