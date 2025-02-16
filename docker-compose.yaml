@@ -1,0 +1,24 @@
+services:
+  frontend:
+    container_name: avito-clone-frontend
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    # volumes:
+    #   - ./frontend:/app
+    depends_on:
+      - backend
+
+  backend:
+    container_name: avito-clone-backend
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    # volumes:
+    #   - ./backend:/app
+    environment:
+      - NODE_ENV=production

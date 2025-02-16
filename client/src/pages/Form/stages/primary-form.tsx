@@ -1,16 +1,19 @@
+import { z } from 'zod';
+import type { UseFormReturn } from 'react-hook-form';
+
 import { Button } from '@/components/ui/button';
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Command, CommandGroup, CommandItem, CommandList } from '@/components/ui/command';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Textarea } from '@/components/ui/textarea';
 
 import { ChevronsUpDown, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useSetTypeContext } from '../context';
 
-import { UseFormReturn } from 'react-hook-form';
-import { z } from 'zod';
+import { useSetTypeContext } from '../context';
 import { schema } from '../schema';
+
 import { CATEGORY_TYPES } from '@/constants';
 
 const types = CATEGORY_TYPES;
@@ -46,7 +49,7 @@ export function PrimaryForm({
                     <FormItem>
                         <FormLabel>Описание объявления*</FormLabel>
                         <FormControl>
-                            <Input placeholder='Описание объявления' {...field} />
+                            <Textarea placeholder='Описание объявления' className='resize-none' {...field} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>

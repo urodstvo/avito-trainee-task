@@ -102,20 +102,20 @@ const SearchByYear = () => {
     );
 };
 
-const SearchByMileage = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
+// const SearchByMileage = () => {
+//     const [searchParams, setSearchParams] = useSearchParams();
 
-    return (
-        <Input
-            placeholder='Поиск по пробегу'
-            value={searchParams.get('mileage') ?? ''}
-            type='number'
-            onChange={(e) =>
-                setSearchParams((prev) => {
-                    e.target.value ? prev.set('mileage', e.target.value) : prev.delete('mileage');
-                    return prev;
-                })
-            }
-        />
-    );
-};
+//     return (
+//         <Input
+//             placeholder='Поиск по пробегу'
+//             value={searchParams.get('mileage') ?? ''}
+//             type='number'
+//             onChange={(e) =>
+//                 setSearchParams((prev) => {
+//                     e.target.value ? prev.set('mileage', e.target.value) : prev.delete('mileage');
+//                     return prev;
+//                 })
+//             }
+//         />
+//     );
+// };
