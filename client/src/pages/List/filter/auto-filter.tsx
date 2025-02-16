@@ -8,11 +8,11 @@ import { useSearchParams } from 'react-router';
 import { CAR_BRANDS } from '@/constants';
 export const AutoFilter = () => {
     return (
-        <aside className='flex flex-col gap-5 w-[300px]'>
+        <>
             <SearchByBrand />
             <SearchByModel />
             <SearchByYear />
-        </aside>
+        </>
     );
 };
 

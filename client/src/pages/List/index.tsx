@@ -7,6 +7,7 @@ import { ItemList } from './item-card';
 import { ItemsPagination } from './pagination';
 import { Filter } from './filter';
 import { Item } from '@/api';
+import { useQueryClient } from '@tanstack/react-query';
 
 const ITEMS_PER_PAGE = 5;
 
@@ -104,9 +105,17 @@ export const ListPage = () => {
         if (totalPages > 0 && page > totalPages) setSearchParams({ page: String(totalPages) });
     }, [page, totalPages]);
 
+    // Прерывание (отмена/прекращение) запросов при переходе со страницы на страницу
+    const queryClient = useQueryClient();
+    useEffect(() => {
+        return () => {
+            queryClient.cancelQueries({ queryKey: ['items'] }); // Отмена при размонтировании
+        };
+    }, [queryClient]);
+
     return (
-        <div className='flex flex-col w-full justify-between pb-20'>
-            <div className='flex gap-5'>
+        <div className='flex flex-col w-full justify-between gap-10 pb-10'>
+            <div className='flex flex-col lg:flex-row gap-5'>
                 <Filter />
                 <div className='flex flex-col gap-5 flex-1'>
                     <h3>{getCountTitle(items.length)}</h3>

@@ -9,12 +9,12 @@ import { PROPERTY_TYPES } from '@/constants';
 
 export const EstateFilter = () => {
     return (
-        <aside className='flex flex-col gap-5 w-[300px]'>
+        <>
             <SearchByType />
             <SearchByArea />
             <SearchByRooms />
             <SearchByPrice />
-        </aside>
+        </>
     );
 };
 

@@ -18,6 +18,7 @@ import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
+import { useQueryClient } from '@tanstack/react-query';
 
 export const FormPage = () => {
     return (
@@ -38,10 +39,13 @@ const FormPageContent = () => {
 
     useTitle(isEditing ? 'Редактирование объявления' : 'Размещение объявлений');
 
+    const id = useMemo(() => {
+        const editingValue = searchParams.get('editing');
+        return editingValue !== null && !Number.isNaN(Number(editingValue)) ? Number(editingValue) : null;
+    }, [searchParams]);
+
     const { mutateAsync: createItemAsync, isPending: isCreatePending } = useCreateItemMutation();
-    const { mutateAsync: updateItemAsync, isPending: isUpdatePending } = useUpdateItemMutation(
-        Number(searchParams.get('editing'))
-    );
+    const { mutateAsync: updateItemAsync, isPending: isUpdatePending } = useUpdateItemMutation(id!);
 
     const form = useForm<z.infer<typeof schema>>({
         resolver: zodResolver(schema),
@@ -53,7 +57,7 @@ const FormPageContent = () => {
         setValue: form.setValue,
     });
 
-    const { data, isPending: isGetItemPending } = useGetEditingItem(Number(searchParams.get('editing')), isEditing);
+    const { data, isPending: isGetItemPending } = useGetEditingItem(id!, isEditing);
 
     useEffect(() => {
         if (data) {
@@ -80,15 +84,23 @@ const FormPageContent = () => {
 
     if (isEditing && isGetItemPending) return null;
 
+    // Прерывание (отмена/прекращение) запросов при переходе со страницы на страницу
+    const queryClient = useQueryClient();
+    useEffect(() => {
+        return () => {
+            queryClient.cancelQueries({ queryKey: ['items', id] }); // Отмена при размонтировании
+        };
+    }, [id, queryClient]);
+
     return (
-        <div className='lg:px-[300px] w-full flex flex-col items-center'>
-            <h1 className='w-full scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl'>
-                Размещение объявления
+        <div className='w-full flex flex-col items-center'>
+            <h1 className='w-full scroll-m-20 text-2xl md:text-3xl font-extrabold tracking-tight lg:text-4xl lg:px-[50px]'>
+                {isEditing ? 'Редактирование объявления' : 'Размещение объявлений'}
             </h1>
-            <div className='flex flex-col lg:flex-row items-start gap-5 lg:gap-[300px] pt-10'>
+            <div className='w-full pt-5'>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className='w-full'>
-                        <div className='flex gap-20'>
+                        <div className='flex flex-col lg:flex-row gap-5 lg:gap-10 xl:gap-20 justify-center'>
                             <PrimaryForm control={form.control} setValue={form.setValue} />
                             <div className='flex flex-col justify-between'>
                                 <SecondaryForm control={form.control} setValue={form.setValue} />

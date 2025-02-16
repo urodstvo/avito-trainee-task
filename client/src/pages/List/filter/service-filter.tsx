@@ -9,11 +9,11 @@ import { SERVICE_TYPES } from '@/constants';
 
 export const ServiceFilter = () => {
     return (
-        <aside className='flex flex-col gap-5 w-[300px]'>
+        <>
             <SearchByType />
             <SearchByExpierence />
             <SearchByCost />
-        </aside>
+        </>
     );
 };
 

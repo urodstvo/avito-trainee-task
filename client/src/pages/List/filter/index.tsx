@@ -42,13 +42,17 @@ export const Filter = () => {
             });
     }, [setSearchParams]);
     return (
-        <aside className='flex flex-col gap-5 w-[300px]'>
-            <SearchByName />
-            <SearchByLocation />
-            <SearchByType />
-            {type === 'Авто' && <AutoFilter />}
-            {type === 'Услуги' && <ServiceFilter />}
-            {type === 'Недвижимость' && <EstateFilter />}
+        <aside className='w-full lg:w-[300px] flex flex-col gap-5 pt-5'>
+            <div className='flex flex-col md:flex-row lg:flex-col gap-5 w-full'>
+                <SearchByName />
+                <SearchByLocation />
+                <SearchByType />
+            </div>
+            <div className='flex flex-col md:flex-row lg:flex-col gap-5 w-full'>
+                {type === 'Авто' && <AutoFilter />}
+                {type === 'Услуги' && <ServiceFilter />}
+                {type === 'Недвижимость' && <EstateFilter />}
+            </div>
         </aside>
     );
 };

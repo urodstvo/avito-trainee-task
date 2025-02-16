@@ -1,7 +1,12 @@
 import { InMemoryStorage } from "./storage.js";
+import { fakeItems } from "./fake-data.js";
 
 // In-memory хранилище для объявлений
 const itemsStorage = new InMemoryStorage();
+
+for (const item of fakeItems) {
+  itemsStorage.addItem(item);
+}
 
 const ItemTypes = {
   REAL_ESTATE: "Недвижимость",

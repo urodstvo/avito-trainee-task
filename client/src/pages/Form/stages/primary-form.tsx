@@ -25,7 +25,7 @@ export function PrimaryForm({
     const setType = useSetTypeContext();
 
     return (
-        <div className='w-full lg:w-[400px] space-y-4 '>
+        <div className='w-full lg:w-[400px] space-y-4'>
             <FormField
                 control={control}
                 name='name'
