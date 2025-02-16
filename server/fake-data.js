@@ -1,7 +1,7 @@
 export const fakeItems = [
   {
     id: 1,
-    user_id: 0,
+    user_id: -1,
     name: "Квартира в центре",
     description: "Просторная квартира в центре города",
     location: "Москва",
@@ -13,7 +13,7 @@ export const fakeItems = [
   },
   {
     id: 2,
-    user_id: 0,
+    user_id: -1,
     name: "Загородный дом",
     description: "Уютный дом с большим садом",
     location: "Московская область",
@@ -25,7 +25,7 @@ export const fakeItems = [
   },
   {
     id: 3,
-    user_id: 0,
+    user_id: -1,
     name: "Toyota Camry",
     description: "Надежный автомобиль",
     location: "Москва",
@@ -37,7 +37,7 @@ export const fakeItems = [
   },
   {
     id: 4,
-    user_id: 0,
+    user_id: -1,
     name: "BMW X5",
     description: "Полностью обслуженный автомобиль",
     location: "Санкт-Петербург",
@@ -49,7 +49,7 @@ export const fakeItems = [
   },
   {
     id: 5,
-    user_id: 0,
+    user_id: -1,
     name: "Ремонт квартир",
     description: "Качественный ремонт квартир",
     location: "Москва",
@@ -61,7 +61,7 @@ export const fakeItems = [
   },
   {
     id: 6,
-    user_id: 0,
+    user_id: -1,
     name: "Репетитор по математике",
     description: "Подготовка к экзаменам, ЕГЭ и ОГЭ",
     location: "Москва",
@@ -73,7 +73,7 @@ export const fakeItems = [
   },
   {
     id: 7,
-    user_id: 0,
+    user_id: -1,
     name: "Ford Focus",
     description: "Экономичный автомобиль",
     location: "Казань",
@@ -85,7 +85,7 @@ export const fakeItems = [
   },
   {
     id: 8,
-    user_id: 0,
+    user_id: -1,
     name: "Дизайн интерьеров",
     description: "Создание стильных интерьеров",
     location: "Екатеринбург",
@@ -97,7 +97,7 @@ export const fakeItems = [
   },
   {
     id: 9,
-    user_id: 0,
+    user_id: -1,
     name: "iPhone 13 Pro",
     description: "Новый телефон в упаковке",
     location: "Москва",
@@ -108,7 +108,7 @@ export const fakeItems = [
   },
   {
     id: 10,
-    user_id: 0,
+    user_id: -1,
     name: "Садовый участок",
     description: "Земля для строительства дома",
     location: "Краснодарский край",
@@ -119,7 +119,7 @@ export const fakeItems = [
   },
   {
     id: 1,
-    user_id: 0,
+    user_id: -1,
     name: "Офис в центре",
     description: "Просторный офис с ремонтом",
     location: "Москва",
@@ -131,7 +131,7 @@ export const fakeItems = [
   },
   {
     id: 2,
-    user_id: 0,
+    user_id: -1,
     name: "Гараж в спальном районе",
     description: "Теплый гараж, удобный подъезд",
     location: "Санкт-Петербург",
@@ -142,7 +142,7 @@ export const fakeItems = [
   },
   {
     id: 3,
-    user_id: 0,
+    user_id: -1,
     name: "Mercedes-Benz E-Class",
     description: "Комфортный и надежный автомобиль",
     location: "Казань",
@@ -154,7 +154,7 @@ export const fakeItems = [
   },
   {
     id: 4,
-    user_id: 0,
+    user_id: -1,
     name: "Hyundai Solaris",
     description: "Экономичный и удобный авто",
     location: "Екатеринбург",
@@ -166,7 +166,7 @@ export const fakeItems = [
   },
   {
     id: 5,
-    user_id: 0,
+    user_id: -1,
     name: "Сантехнические работы",
     description: "Установка и ремонт сантехники",
     location: "Москва",
@@ -178,7 +178,7 @@ export const fakeItems = [
   },
   {
     id: 6,
-    user_id: 0,
+    user_id: -1,
     name: "Ландшафтный дизайн",
     description: "Благоустройство садов и участков",
     location: "Сочи",
@@ -190,7 +190,7 @@ export const fakeItems = [
   },
   {
     id: 7,
-    user_id: 0,
+    user_id: -1,
     name: "Шиномонтаж и балансировка",
     description: "Быстрое и качественное обслуживание",
     location: "Краснодар",
@@ -202,7 +202,7 @@ export const fakeItems = [
   },
   {
     id: 8,
-    user_id: 0,
+    user_id: -1,
     name: "Samsung Galaxy S23",
     description: "Флагманский смартфон, новый",
     location: "Москва",
@@ -213,7 +213,7 @@ export const fakeItems = [
   },
   {
     id: 9,
-    user_id: 0,
+    user_id: -1,
     name: "Ноутбук ASUS ROG",
     description: "Мощный игровой ноутбук",
     location: "Санкт-Петербург",
@@ -224,7 +224,7 @@ export const fakeItems = [
   },
   {
     id: 10,
-    user_id: 0,
+    user_id: -1,
     name: "Земельный участок под строительство",
     description: "Отличное место для загородного дома",
     location: "Тверская область",
@@ -235,7 +235,7 @@ export const fakeItems = [
   },
   {
     id: 11,
-    user_id: 0,
+    user_id: -1,
     name: "Volkswagen Tiguan",
     description: "Кроссовер в отличном состоянии",
     location: "Москва",
@@ -247,7 +247,7 @@ export const fakeItems = [
   },
   {
     id: 12,
-    user_id: 0,
+    user_id: -1,
     name: "Строительство бань и саун",
     description: "Под ключ, качественные материалы",
     location: "Новосибирск",

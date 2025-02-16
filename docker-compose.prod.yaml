@@ -1,0 +1,20 @@
+services:
+  frontend:
+    container_name: avito-clone-frontend
+    image: urodstvo/avito-clone:frontend
+    ports:
+      - "3000:3000"
+    # volumes:
+    #   - ./frontend:/app
+    depends_on:
+      - backend
+
+  backend:
+    container_name: avito-clone-backend
+    image: urodstvo/avito-clone:backend
+    ports:
+      - "8000:8000"
+    # volumes:
+    #   - ./backend:/app
+    environment:
+      - NODE_ENV=production

@@ -1,0 +1,13 @@
+{
+  "name": "avito-trainee-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "docker:build": "docker-compose up -d",
+    "docker:pull": "docker-compose -f docker-compose.prod.yaml up -d"
+  },
+  "keywords": [],
+  "author": "Zubtsov Andrey [urodstvo]",
+  "license": "MIT"
+}
